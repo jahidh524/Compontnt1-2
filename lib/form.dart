@@ -178,29 +178,40 @@ class _FormPageState extends State<FormPage> {
                       onPressed: _validateInputDrop,
                       child: const Text('Validate Selection'),
                     ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  RangeSlider(
-                    activeColor: Colors.green,
-                    inactiveColor: Colors.black,
-                    values: values,
-                    labels: lables,
-                    divisions: 10, 
-                    onChanged: (newValue){
-                      values = newValue;
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    RangeSlider(
+                        activeColor: Colors.green,
+                        inactiveColor: Colors.black,
+                        values: values,
+                        labels: lables,
+                        divisions: 10,
+                        onChanged: (newValue) {
+                          values = newValue;
 
-                      setState(() {
-                        
-                      });
-                    }
-                  )
-
+                          setState(() {});
+                        }),
+                    //const AssetImageClass(),
                   ],
                 ),
               ),
             )),
       ),
+    );
+  }
+}
+
+class AssetImageClass extends StatelessWidget {
+  const AssetImageClass({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = const AssetImage('image/flutter.png');
+    Image image = Image(image: assetImage);
+
+    return Container(
+      child: image,
     );
   }
 }

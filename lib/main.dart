@@ -21,11 +21,10 @@ class MyApp extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        primaryColor: Colors.blue,
-        fontFamily: 'Roboto',
-      ),
+      theme: ThemeData(primarySwatch: Colors.red,
+      primaryColor: Colors.blue,
+  
+  fontFamily: 'Roboto',),
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: DefaultTabController(
@@ -267,10 +266,8 @@ class MyApp extends StatelessWidget {
                             //flex: 5,
                             child: Column(
                           children: [
-                            CustomTextWidget(
-                                text: "Jahid", color: Colors.green),
-                            CustomTextWidget(
-                                text: "This is red", color: Colors.red),
+                            CustomTextWidget(text: "Jahid", color: Colors.green),
+                            CustomTextWidget(text: "This is red", color: Colors.red),
                           ],
                         ))
                       ],
