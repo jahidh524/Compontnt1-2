@@ -26,12 +26,12 @@ class _FormPageState extends State<FormPage> {
   void _validateInputDrop() {
     if (_selectedValueDrop == null) {
       setState(() {
-        _errorText = 'Please select a value';
+        _errorTextDrop = 'Please select a value';
       });
     } else {
       // Input is valid, perform necessary actions
       setState(() {
-        _errorText = null;
+        _errorTextDrop = null;
       });
       print('Selected value: $_selectedValueDrop');
     }
@@ -173,10 +173,9 @@ class _FormPageState extends State<FormPage> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: _validateInputDrop,
-                      child: const Text('Validate Selection'),
+                      child: const Text('Selection'),
                     ),
                     const SizedBox(
                       height: 30,

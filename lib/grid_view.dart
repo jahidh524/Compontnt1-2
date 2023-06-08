@@ -5,14 +5,16 @@ class GridViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final ThemeData theme = Theme.of(context);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.teal),
+      //theme: ThemeData(primarySwatch: Colors.teal),
      
 
       home: SafeArea(
         child: Scaffold(
+          backgroundColor: theme.primaryColorLight,
           appBar: AppBar(
             leading: IconButton(
             icon:  const Icon(Icons.arrow_back),
