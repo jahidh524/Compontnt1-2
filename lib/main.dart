@@ -1,8 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/form.dart';
-import 'package:myapp/gridView.dart';
+import 'package:myapp/grid_view.dart';
 import 'package:myapp/second.dart';
+import 'package:myapp/strings.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -144,7 +145,7 @@ class MyApp extends StatelessWidget {
                       height: 20,
                     ),
                     const Text(
-                      'There is no limit of learning!',
+                      AllStrings.noLimit,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -327,7 +328,7 @@ class MyApp extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => gridView()),
+                                  builder: (context) => const GridViewPage()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
