@@ -14,9 +14,11 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
+  RangeValues values = const RangeValues(0, 1);
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
-  final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController nameEditingController = TextEditingController();
+  final TextEditingController ageEditingController = TextEditingController();
 
   String? _selectedValueDrop;
   String? _errorTextDrop;
@@ -36,8 +38,12 @@ class _FormPageState extends State<FormPage> {
   }
 
   String? _errorText;
+  String? _errorTextAge;
+  //String? _errorText;
   void _validateInput() {
-    final inputValue = _textEditingController.text;
+    final inputValue = nameEditingController.text;
+    final ageValue = ageEditingController.text;
+
     if (inputValue.isEmpty || !RegExp(r'^[a-z A-Z]').hasMatch(inputValue)) {
       setState(() {
         _errorText = 'Please enter correct value';
@@ -48,10 +54,24 @@ class _FormPageState extends State<FormPage> {
       });
       print('Input value: $inputValue');
     }
+
+    if (ageValue.isEmpty || !RegExp(r'^[0-9]').hasMatch(ageValue)) {
+      setState(() {
+        _errorTextAge = 'Please enter correct value';
+      });
+    } else {
+      setState(() {
+        _errorTextAge = null;
+      });
+      print('Input value: $ageValue');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    RangeLabels lables =
+        RangeLabels(values.start.toString(), values.end.toString());
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.teal),
@@ -72,7 +92,7 @@ class _FormPageState extends State<FormPage> {
               child: Form(
                 key: _formKey,
                 child: Column(
-                 // mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       "This is form Page",
@@ -103,17 +123,17 @@ class _FormPageState extends State<FormPage> {
                   ),*/
 
                     TextField(
-                      controller: _textEditingController,
+                      controller: nameEditingController,
                       decoration: InputDecoration(
                         labelText: AllStrings.yourName,
                         errorText: _errorText,
                       ),
                     ),
                     TextField(
-                      controller: _textEditingController,
+                      controller: ageEditingController,
                       decoration: InputDecoration(
                         labelText: AllStrings.yourNumber,
-                        errorText: _errorText,
+                        errorText: _errorTextAge,
                       ),
                     ),
                     ElevatedButton(
@@ -123,32 +143,34 @@ class _FormPageState extends State<FormPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    
+
                     //Dropdown
-                    DropdownButtonFormField<String>(
-                      value: _selectedValueDrop,
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'Option 1',
-                          child: Text('Option 1'),
+                    Expanded(
+                      child: DropdownButtonFormField<String>(
+                        value: _selectedValueDrop,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'Option 1',
+                            child: Text('Option 1'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Option 2',
+                            child: Text('Option 2'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Option 3',
+                            child: Text('Option 3'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedValueDrop = value;
+                          });
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Select an option',
+                          errorText: _errorTextDrop,
                         ),
-                        DropdownMenuItem(
-                          value: 'Option 2',
-                          child: Text('Option 2'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'Option 3',
-                          child: Text('Option 3'),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedValueDrop = value;
-                        });
-                      },
-                      decoration: InputDecoration(
-                        labelText: 'Select an option',
-                        errorText: _errorTextDrop,
                       ),
                     ),
                     const SizedBox(height: 16.0),
@@ -156,6 +178,24 @@ class _FormPageState extends State<FormPage> {
                       onPressed: _validateInputDrop,
                       child: const Text('Validate Selection'),
                     ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  RangeSlider(
+                    activeColor: Colors.green,
+                    inactiveColor: Colors.black,
+                    values: values,
+                    labels: lables,
+                    divisions: 10, 
+                    onChanged: (newValue){
+                      values = newValue;
+
+                      setState(() {
+                        
+                      });
+                    }
+                  )
+
                   ],
                 ),
               ),
