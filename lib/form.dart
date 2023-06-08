@@ -1,70 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/strings.dart';
 
 final _formKey = GlobalKey<FormState>();
 
 final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
-  String _inputValue = '';
 
-  void showSnackBar() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+class FormPage extends StatefulWidget {
+  const FormPage({super.key});
 
-      final snackBar = SnackBar(
-        content: Text(_inputValue),
-        duration: const Duration(seconds: 3),
-      );
-      scaffoldMessengerKey.currentState!.showSnackBar(snackBar);
+  @override
+  State<FormPage> createState() => _FormPageState();
+}
+
+class _FormPageState extends State<FormPage> {
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+  final TextEditingController _textEditingController = TextEditingController();
+
+  String? _errorText;
+  void _validateInput() {
+    final inputValue = _textEditingController.text;
+    if (inputValue.isEmpty || !RegExp(r'^[a-z A-Z]').hasMatch(inputValue)) {
+      setState(() {
+        _errorText = 'Please enter correct value';
+      });
+    } else {
+      setState(() {
+        _errorText = null;
+      });
+      print('Input value: $inputValue');
     }
   }
 
-
-class formPage extends StatefulWidget {
-  @override
-  State<formPage> createState() => _formPageState();
-}
-
-class _formPageState extends State<formPage> {
-  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey<ScaffoldMessengerState>();
-
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.teal),
-     
-
       home: SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-            icon:  const Icon(Icons.arrow_back),
-            onPressed: () {
-              // Handle back button press
-              Navigator.pop(context);
-            },
-          ),
-          title:  const Text('Form Page'),
-          ),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  // Handle back button press
+                  Navigator.pop(context);
+                },
+              ),
+              title: const Text('Form Page'),
+            ),
+            body: Container(
+              padding: const EdgeInsets.all(20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "This is form Page",
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
 
-          body: Container(
-            padding: const EdgeInsets.all(20),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("This is form Page", style: TextStyle(
-                    fontSize: 24,
-                  ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-
-                  /*TextFormField(
+                    /*TextFormField(
                     onSaved: (value) {
                       _inputValue = value!;
                     },
@@ -82,71 +85,30 @@ class _formPageState extends State<formPage> {
                     },
                   ),*/
 
-
-                  TextFormField(
-                    onSaved: (value) {
-                      _inputValue = value!;
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter a value';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Enter your name',
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 30,
-                  ),
-
-                  TextFormField(
-                    onSaved: (value) {
-                      _inputValue = value!;
-                    },
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter a value';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                      hintText: 'Enter a value',
-                    ),
-                  ),
-
-
-
-                   const SizedBox(
-                    height: 50,
-                  ),
-
-                  ElevatedButton(
-                    onPressed: showSnackBar,
-                    
-                    style: ElevatedButton.styleFrom(
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    TextField(
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        labelText: AllStrings.yourName,
+                        errorText: _errorText,
                       ),
                     ),
-                    child: const Text('Sign-Up'),
-              ),
-                  
-                ],
-              ),
-            ),
-          )
-        
+                    TextField(
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        labelText: AllStrings.yourNumber,
+                        errorText: _errorText,
+                      ),
+                    ),
 
-          
-        
-        ),
+                    ElevatedButton(
+                      onPressed: _validateInput,
+                      child: const Text('Get Input Value'),
+                    ),
+                  ],
+                ),
+              ),
+            )),
       ),
     );
-    
   }
 }

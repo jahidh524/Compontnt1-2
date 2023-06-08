@@ -259,38 +259,12 @@ class MyApp extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                             //flex: 5,
                             child: Column(
                           children: [
-                            Container(
-                              color: Colors.green,
-                              width: screenWidth / 3,
-                              height: screenHeight / 12,
-                              child: const Center(
-                                child: Text(
-                                  'hello',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: screenWidth / 3,
-                              height: screenHeight / 12,
-                              color: Colors.red,
-                              child: const Center(
-                                child: Text(
-                                  'This is red',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            CustomTextWidget(text: "Jahid", color: Colors.green),
+                            CustomTextWidget(text: "This is red", color: Colors.red),
                           ],
                         ))
                       ],
@@ -348,7 +322,7 @@ class MyApp extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => formPage()),
+                                  builder: (context) => FormPage()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -383,6 +357,41 @@ class MyApp extends StatelessWidget {
                 ],
               ),
             )),
+      ),
+    );
+  }
+}
+
+class CustomTextWidget extends StatelessWidget {
+  const CustomTextWidget({
+    super.key,
+    // required this.screenWidth,
+    // required this.screenHeight,
+    required this.text,
+    required this.color,
+  });
+
+  // final double screenWidth;
+  // final double screenHeight;
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return Container(
+      color: color,
+      width: screenWidth / 3,
+      height: screenHeight / 12,
+      child: Center(
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

@@ -1,5 +1,9 @@
 class AllStrings{
   static const String noLimit = 'There is no limit of learning!';
+  static const String valueFromController ='Input value from controller: ';
+  static const String yourName = 'Enter your name';
+  static const String yourNumber = 'Enter your name';
+
 
 }
 
