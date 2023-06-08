@@ -7,15 +7,15 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    var str_mail = TextEditingController();
-    var str_pass = TextEditingController();
+    var strMail = TextEditingController();
+    var strPass = TextEditingController();
 
 
     return MaterialApp(
      debugShowCheckedModeBanner: false,
 
       home: SafeArea(
-        child: Scaffold(
+        child: Scaffold( 
           appBar: AppBar(
             leading: IconButton(
             icon:  const Icon(Icons.arrow_back),
@@ -63,13 +63,13 @@ class SecondPage extends StatelessWidget {
                  child: 
                  
                  TextField(
-                  controller: str_mail,
+                  controller: strMail,
                   decoration: InputDecoration(
                     hintMaxLines: 2,
                     hintText: 'Enter your Email',
                     suffix: IconButton(
                       onPressed: (){}, 
-                      icon: Icon(Icons.remove_red_eye)),
+                      icon: const Icon(Icons.remove_red_eye)),
                     prefix: IconButton(
                       onPressed: (){}, 
                       icon: IconButton(
@@ -85,7 +85,7 @@ class SecondPage extends StatelessWidget {
                Container(
                 width: screenWidth/1.2,
                  child: TextField(
-                  controller: str_pass,
+                  controller: strPass,
                   obscureText: true,
                   obscuringCharacter: '*',
                   decoration: InputDecoration(
@@ -98,8 +98,8 @@ class SecondPage extends StatelessWidget {
                ),
                ElevatedButton(onPressed: ()
                {
-                  String email = str_mail.text.toString();
-                  String pass = str_pass.text.toString();
+                  String email = strMail.text.toString();
+                  String pass = strPass.text.toString();
 
                   print("Email: $email, Password: $pass");
                },
