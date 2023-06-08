@@ -51,7 +51,7 @@ class GridViewPage extends StatelessWidget {
               child: Container(color: Colors.red,),
             ),
             
-            assetImage(),
+            const AssetImageClass(),
             Image.network('https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iPhone-13-Pro_iPhone-13-Pro-Max_09142021_inline.jpg.large.jpg'),
             Image.network('https://www.mobiledokan.com/wp-content/uploads/2021/10/Apple-iPhone-13-Pro-Max-image.jpg'),
           
@@ -70,7 +70,9 @@ class GridViewPage extends StatelessWidget {
   }
   }
 
-  class assetImage extends StatelessWidget{
+  class AssetImageClass extends StatelessWidget{
+  const AssetImageClass({super.key});
+
     @override
     Widget build(BuildContext context) {
       AssetImage assetImage = const AssetImage('image/flutter.png');
