@@ -5,6 +5,8 @@ import 'package:myapp/grid_view.dart';
 import 'package:myapp/second.dart';
 import 'package:myapp/strings.dart';
 
+import 'api.dart';
+
 void main() {
   runApp(const MaterialApp(
     home: MyApp(),
@@ -329,7 +331,7 @@ class MyApp extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FormPage()),
+                                  builder: (context) => const FormPage()),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -344,6 +346,24 @@ class MyApp extends StatelessWidget {
                         ),
                       ],
                     ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PostMan()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.teal,
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      child: const Text('PostMan'),
+                    )
                   ],
                 ),
               ),
