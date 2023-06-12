@@ -7,6 +7,8 @@ import 'package:myapp/strings.dart';
 
 import 'api.dart';
 
+///model view controller
+
 void main() {
   runApp(const MaterialApp(
     home: MyApp(),

@@ -87,66 +87,66 @@ class _FormPageState extends State<FormPage> {
               ),
               title: const Text('Form Page'),
             ),
-            body: Container(
-              padding: const EdgeInsets.all(20),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "This is form Page",
-                      style: TextStyle(
-                        fontSize: 24,
+            body: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "This is form Page",
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-
-                    /*TextFormField(
-                    onSaved: (value) {
-                      _inputValue = value!;
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Enter your name',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty || !RegExp(r'^[a-z A-Z]').hasMatch(value)){
-                        return "Enter correct name";
-                      } 
-                      else{
-                        return null;
-                      }
-                      
-                    },
-                  ),*/
-
-                    TextField(
-                      controller: nameEditingController,
-                      decoration: InputDecoration(
-                        labelText: AllStrings.yourName,
-                        errorText: _errorText,
+                      const SizedBox(
+                        height: 30,
                       ),
-                    ),
-                    TextField(
-                      controller: ageEditingController,
-                      decoration: InputDecoration(
-                        labelText: AllStrings.yourNumber,
-                        errorText: _errorTextAge,
+            
+                      /*TextFormField(
+                      onSaved: (value) {
+                        _inputValue = value!;
+                      },
+                      decoration: const InputDecoration(
+                        labelText: 'Enter your name',
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: _validateInput,
-                      child: const Text('Get Input Value'),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    //Dropdown
-                    Expanded(
-                      child: DropdownButtonFormField<String>(
+                      validator: (value){
+                        if(value!.isEmpty || !RegExp(r'^[a-z A-Z]').hasMatch(value)){
+                          return "Enter correct name";
+                        } 
+                        else{
+                          return null;
+                        }
+                        
+                      },
+                    ),*/
+            
+                      TextField(
+                        controller: nameEditingController,
+                        decoration: InputDecoration(
+                          labelText: AllStrings.yourName,
+                          errorText: _errorText,
+                        ),
+                      ),
+                      TextField(
+                        controller: ageEditingController,
+                        decoration: InputDecoration(
+                          labelText: AllStrings.yourNumber,
+                          errorText: _errorTextAge,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: _validateInput,
+                        child: const Text('Get Input Value'),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+            
+                      //Dropdown
+                      DropdownButtonFormField<String>(
                         value: _selectedValueDrop,
                         items: const [
                           DropdownMenuItem(
@@ -172,27 +172,27 @@ class _FormPageState extends State<FormPage> {
                           errorText: _errorTextDrop,
                         ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: _validateInputDrop,
-                      child: const Text('Selection'),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    RangeSlider(
-                        activeColor: Colors.green,
-                        inactiveColor: Colors.black,
-                        values: values,
-                        labels: lables,
-                        divisions: 10,
-                        onChanged: (newValue) {
-                          values = newValue;
-
-                          setState(() {});
-                        }),
-                    //const AssetImageClass(),
-                  ],
+                      ElevatedButton(
+                        onPressed: _validateInputDrop,
+                        child: const Text('Selection'),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      RangeSlider(
+                          activeColor: Colors.green,
+                          inactiveColor: Colors.black,
+                          values: values,
+                          labels: lables,
+                          divisions: 10,
+                          onChanged: (newValue) {
+                            values = newValue;
+            
+                            setState(() {});
+                          }),
+                      //const AssetImageClass(),
+                    ],
+                  ),
                 ),
               ),
             )),
